@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cajero Automatico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container"> 
+        <div class="pantalla">
+            <div id="bontones1">
+                <button type="button" class="btn" id="btn_ingreso">    
+                    Ingresar Dinero
+                </button>
+                <button type="button" class="btn" id="btn_retiro">    
+                    Retirar Dinero
+                </button>
+            </div>
+            <div id="mensaje">
+
+            </div>
+
+            <div id="bontones2">
+                <button type="button" class="btn" id="btn_transfer">    
+                    Transferir Dinero
+                </button>
+                <button type="button" class="btn" id="btn_consulta">    
+                    Consultar Saldo
+                </button>
+            </div>
+            
+        </div>
+    
+    <!-- Ventana modal, por defecto no visiblel -->
+    <div id="ventanaModal" class="modal">
+        <!-- <div class="modal-dialog" role="document"> -->
+            <div class="contenido-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title-modal">
+                        modal
+                    </h5>      
+                    <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div id="modal-body">
+                    <form action="" method="post">
+                        <div class="row">
+                            <label for="monto">Ingrese el Monto</label>
+                            <input type="text" name="monto" id="monto" placeholder="Digite el Monto">
+                         </div>
+                        <div class="row" id="div-cuenta">
+                            <label for="monto">Cuenta a Transferir</label>
+                            <input type="text" name="cuenta" id="cuenta" placeholder="Digite la Cuenta">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btnenviar " id="btn_enviar" name="btn_enviar">
+                        Enviar
+                    </button>
+                    <button type="button" class="btncerrar" data-dismiss="modal" id="btn_cancelar">Cerrar</button>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+    </main>
+    <script src="funciones.js"></script>
+</body>
+</html>
