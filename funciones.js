@@ -6,13 +6,14 @@ let modal = document.getElementById("ventanaModal");
 let btnIngreso = document.getElementById("btn_ingreso");
 let btnRetiro = document.getElementById("btn_retiro");
 let btnTransfer = document.getElementById("btn_transfer");
-let btnConsulta = document.getElementById("btn_transfer");
+let btnConsulta = document.getElementById("btn_consulta");
 let btnClose = document.getElementsByClassName("close")[0];
 let titlemodal = document.getElementById("title-modal");
 let divcuenta = document.getElementById("div-cuenta");
 divcuenta.style.display = "none";  
 let btn_enviar = document.getElementById("btn_enviar");
 let ingreso = document.querySelector("#monto");
+let egreso= document.querySelector("#monto");
 //La variable tipoMovimiento puede tener los siguientes valores: 1= Ingreso, 2=retiro, 3= transferencia, 4= consulta
 let tipoMovimiento= 0;
 let cuenta;
@@ -37,6 +38,7 @@ btnRetiro.onclick = function(){
     divcuenta.style.display = "none";
     modal.style.display = "block";
     tipoMovimiento=2;
+    
     // btnConsulta.style.display ="none";
 }
 
@@ -47,6 +49,8 @@ btnTransfer.onclick = function(){
     tipoMovimiento=3;
     // btnConsulta.style.display ="none";
 }
+
+
 btnClose.onclick = function(){
     modal.style.display = "none";
    
@@ -86,7 +90,7 @@ function realizarIngreso(cuenta) {
     let montoIngreso= parseInt(ingreso.value);
    let saldoActual = parseInt(cuenta.saldo);
         saldoActual = montoIngreso+ saldoActual;
-        alert(saldoActual);
+       
     if (saldoActual >= 10 && saldoActual <= 990) {
           
           swal(`Monto ingresado: $  ${montoIngreso}  Nuevo saldo:${saldoActual}`);
@@ -98,19 +102,40 @@ function realizarIngreso(cuenta) {
     }
 
   }
+  function realizarretiro(cuenta) {
+    let montoRetiro= parseInt(egreso.value);
+    let saldoActual = parseInt(cuenta.saldo);
+    saldoActual = saldoActual-montoRetiro;
+   
+  if (saldoActual >= 10 && saldoActual <= 990) {
+  
+  
+      swal (`Monto Retirado: $  ${montoRetiro}  Nuevo saldo:${saldoActual}`);
+  }
+  else{
+    swal("El saldo no se encuentra dentro de los limites permitidos")
 
-  function consultarSaldo(Usuario) {
-    let saldo = parseInt(Usuario.saldo);
+  }
+  }
+ function consultarSaldo(cuenta) {
+    let saldo = cuenta.saldo;
     swal (`Saldo actual: $  ${saldo}`);
     return saldo;
   }
-
+  btnConsulta.onclick= function(){
+    consultarSaldo(cuenta);
+  }
 btn_enviar.onclick = function(){
-    let valor= ingreso.value;
+  
+  if(tipoMovimiento==1){ 
+  let valor= ingreso.value;
     realizarIngreso(cuenta);
+  } 
+  else if (tipoMovimiento==2){
+    realizarretiro(cuenta);
+  }
     //swal("estoy enviando"+ valor, "You clicked the button!", "success");
      
-
 }
 
 //Declaracion de cuentas de usuario
@@ -122,21 +147,7 @@ btn_enviar.onclick = function(){
   
 
   
-  function realizarretiro(cuenta) {
-    let montoRetiro= parseInt(prompt("Cuanto dinero desea retirar?"));
-    
-   // cuando tengamos el teclado let montoRetiro = parseInt(document.getElementById("montoRetiro").value);
-    cuenta.saldo = cuenta.saldo- montoRetiro;
-if (cuenta.saldo >= 10 && cuenta.saldo <= 990) {
- 
   
-      alert (`Monto Retiradoo: $  ${montoRetiro}  Nuevo saldo:${cuenta.saldo}`);
-}
-else{
-    alert("El saldo no se encuentra dentro de los limites permitidos")
-    cuenta.saldo = cuenta.saldo + montoRetiro;
-}
-  }*/
 
  /* let cuenta=seleccionarCuenta();
   let saldo= consultarSaldo(cuenta);
