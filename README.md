@@ -6,11 +6,7 @@ Persona 1
 Persona 2
 Persona 3
 Para esto, puedes trabajar con un arreglo de objetos como el siguiente:
-1
-2
-3
-4
-5
+
 var cuentas = [
   { nombre: “Mali”, saldo: 200 }
   { nombre: “Gera”, saldo: 290 }
